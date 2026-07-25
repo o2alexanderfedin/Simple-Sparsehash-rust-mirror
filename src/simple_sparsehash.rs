@@ -268,11 +268,11 @@ pub(crate) extern "C" fn sparse_array_set(arr: &SparseArray, i: u32,
     if i as u64 > (*arr).maximum { return 0 as i32; }
     /// Since our hashtable is divided into many arrays, we need to pick the one
     ///relevant to `i` in this case:
-    let operating_group: *mut SparseArrayGroup =
+    let operating_group: &mut SparseArrayGroup =
         unsafe { &mut *(*arr).groups.add((i / 48 as u32) as usize) };
     let position: i32 = (i % 48 as u32) as i32;
-    return _sparse_array_group_set(unsafe { &mut *operating_group },
-                position as u32, val, vlen as u64) as i32;
+    return _sparse_array_group_set(operating_group, position as u32, val,
+                vlen as u64) as i32;
 }
 
 extern "C" fn _sparse_array_group_get(arr: &mut SparseArrayGroup, i: u32,
@@ -310,11 +310,10 @@ extern "C" fn _sparse_array_group_get(arr: &mut SparseArrayGroup, i: u32,
 pub(crate) extern "C" fn sparse_array_get(arr: &SparseArray, i: u32,
     outsize: *mut u64) -> *const () {
     if i as u64 > (*arr).maximum { return 0 as *mut () as *const (); }
-    let operating_group: *mut SparseArrayGroup =
+    let operating_group: &mut SparseArrayGroup =
         unsafe { &mut *(*arr).groups.add((i / 48 as u32) as usize) };
     let position: i32 = (i % 48 as u32) as i32;
-    return _sparse_array_group_get(unsafe { &mut *operating_group },
-            position as u32, outsize);
+    return _sparse_array_group_get(operating_group, position as u32, outsize);
 }
 
 extern "C" fn _sparse_array_group_free(arr: &SparseArrayGroup) -> i32 {
@@ -332,9 +331,9 @@ pub(crate) extern "C" fn sparse_array_free(arr: *mut SparseArray) -> i32 {
                 break '__b2;
             }
             '__c2: loop {
-                let sag: *mut SparseArrayGroup =
+                let sag: &mut SparseArrayGroup =
                     unsafe { &mut *unsafe { (*arr).groups.add(i as usize) } };
-                _sparse_array_group_free(unsafe { &*sag });
+                _sparse_array_group_free(sag);
                 break '__c2;
             }
             {
