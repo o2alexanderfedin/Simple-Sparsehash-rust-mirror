@@ -59,12 +59,7 @@ pub(crate) extern "C" fn sparse_array_init(element_size: u64, maximum: u32) -> *
                 (*sag).elem_size = element_size as u64;
                 break '__c0;
             }
-            {
-                let __p = &mut i;
-                let __t = *__p;
-                *__p = (*__p).wrapping_add(1);
-                __t
-            };
+            i = i.wrapping_add(1);
         }
     }
     return arr;
@@ -104,10 +99,9 @@ extern "C" fn position_to_offset(bitmap: *const u32, position: u32) -> u32 {
             '__c1: loop {
                 retval = retval.wrapping_add(popcount_32(unsafe {
                     *bitmap.add({
-                        let __p = &mut bitmap_iter;
-                        let __t = *__p;
-                        *__p = (*__p).wrapping_add(1);
-                        __t
+                        let __old = bitmap_iter;
+                        bitmap_iter = bitmap_iter.wrapping_add(1);
+                        __old
                     } as usize)
                 }));
                 break '__c1;
@@ -384,12 +378,7 @@ pub(crate) extern "C" fn sparse_array_free(arr: *mut SparseArray) -> i32 {
                 _sparse_array_group_free(sag);
                 break '__c2;
             }
-            {
-                let __p = &mut i;
-                let __t = *__p;
-                *__p = (*__p).wrapping_add(1);
-                __t
-            };
+            i = i.wrapping_add(1);
         }
     }
     unsafe { free(unsafe { (*arr).groups } as *mut ()) };
@@ -443,12 +432,7 @@ extern "C" fn hash_fnv1a(key: *const i8, klen: u64) -> u64 {
                 hash = hash.wrapping_mul(fnv_prime as u64);
                 break '__c4;
             }
-            {
-                let __p = &mut i;
-                let __t = *__p;
-                *__p = (*__p).wrapping_add(1);
-                __t
-            };
+            i = i.wrapping_add(1);
         }
     }
     return hash as u64;
@@ -595,10 +579,9 @@ extern "C" fn _rehash_and_grow_table(dict: &mut SparseDict) -> i32 {
                 }
                 12 => {
                     {
-                        let __p = &mut i;
-                        let __t = *__p;
-                        *__p = (*__p).wrapping_add(1);
-                        __t
+                        let __old = i;
+                        i = i.wrapping_add(1);
+                        __old
                     };
                     __state = 10;
                 }
@@ -689,10 +672,9 @@ extern "C" fn _rehash_and_grow_table(dict: &mut SparseDict) -> i32 {
                 }
                 26 => {
                     {
-                        let __p = &mut num_probes;
-                        let __t = *__p;
-                        *__p = (*__p).wrapping_add(1);
-                        __t
+                        let __old = num_probes;
+                        num_probes = num_probes.wrapping_add(1);
+                        __old
                     };
                     __state = 18;
                 }
@@ -701,10 +683,9 @@ extern "C" fn _rehash_and_grow_table(dict: &mut SparseDict) -> i32 {
                 }
                 28 => {
                     {
-                        let __p = &mut buckets_rehashed;
-                        let __t = *__p;
-                        *__p = (*__p).wrapping_add(1);
-                        __t
+                        let __old = buckets_rehashed;
+                        buckets_rehashed = buckets_rehashed.wrapping_add(1);
+                        __old
                     };
                     __state = 15;
                 }
@@ -837,10 +818,9 @@ pub(crate) extern "C" fn sparse_dict_set(
                 }
                 10 => {
                     {
-                        let __p = &mut num_probes;
-                        let __t = *__p;
-                        *__p = (*__p).wrapping_add(1);
-                        __t
+                        let __old = num_probes;
+                        num_probes = num_probes.wrapping_add(1);
+                        __old
                     };
                     __state = 23;
                 }
@@ -1035,12 +1015,7 @@ pub(crate) extern "C" fn sparse_dict_get(
             /// We found nothing where we expected something.
             return 0 as *mut () as *const ();
         }
-        {
-            let __p = &mut num_probes;
-            let __t = *__p;
-            *__p = (*__p).wrapping_add(1);
-            __t
-        };
+        num_probes = num_probes.wrapping_add(1);
         if num_probes as u64 > (*dict).bucket_count {
             return 0 as *mut () as *const ();
         }
@@ -1070,12 +1045,7 @@ pub(crate) extern "C" fn sparse_dict_free(dict: *mut SparseDict) -> i32 {
                 }
                 break '__c11;
             }
-            {
-                let __p = &mut i;
-                let __t = *__p;
-                *__p = (*__p).wrapping_add(1);
-                __t
-            };
+            i = i.wrapping_add(1);
         }
     }
     sparse_array_free(unsafe { (*dict).buckets });

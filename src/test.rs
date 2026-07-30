@@ -143,12 +143,7 @@ pub(crate) extern "C" fn test_array_set_backwards() -> i32 {
                 }
                 break '__c12;
             }
-            {
-                let __p = &mut i;
-                let __t = *__p;
-                *__p -= 1;
-                __t
-            };
+            i -= 1;
         }
     }
     {
@@ -171,12 +166,7 @@ pub(crate) extern "C" fn test_array_set_backwards() -> i32 {
                 }
                 break '__c13;
             }
-            {
-                let __p = &mut i;
-                let __t = *__p;
-                *__p -= 1;
-                __t
-            };
+            i -= 1;
         }
     }
     if (sparse_array_free(arr) == 0) as i32 != 0 {
@@ -226,12 +216,7 @@ pub(crate) extern "C" fn test_array_set() -> i32 {
                 }
                 break '__c14;
             }
-            {
-                let __p = &mut i;
-                let __t = *__p;
-                *__p += 1;
-                __t
-            };
+            i += 1;
         }
     }
     {
@@ -254,12 +239,7 @@ pub(crate) extern "C" fn test_array_set() -> i32 {
                 }
                 break '__c15;
             }
-            {
-                let __p = &mut i;
-                let __t = *__p;
-                *__p += 1;
-                __t
-            };
+            i += 1;
         }
     }
     if (sparse_array_free(arr) == 0) as i32 != 0 {
@@ -576,12 +556,7 @@ pub(crate) extern "C" fn test_dict_lots_of_set() -> i32 {
                 }
                 break '__c16;
             }
-            {
-                let __p = &mut i;
-                let __t = *__p;
-                *__p += 1;
-                __t
-            };
+            i += 1;
         }
     }
     {
@@ -664,12 +639,7 @@ pub(crate) extern "C" fn test_dict_lots_of_set() -> i32 {
                 }
                 break '__c17;
             }
-            {
-                let __p = &mut i;
-                let __t = *__p;
-                *__p -= 1;
-                __t
-            };
+            i -= 1;
         }
     }
     if (sparse_dict_free(dict) == 0) as i32 != 0 {
@@ -691,12 +661,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
     let mut tests_run: i32 = 0;
     test_return_val = test_cannot_set_bigger_elements();
     if (test_return_val == 0) as i32 != 0 {
-        {
-            let __p = &mut tests_failed;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_failed += 1;
         unsafe {
             printf(
                 c"%c[%dmFailed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -708,12 +673,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
             )
         };
     } else {
-        {
-            let __p = &mut tests_run;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_run += 1;
         unsafe {
             printf(
                 c"%c[%dmPassed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -727,12 +687,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
     }
     test_return_val = test_cannot_set_outside_bounds();
     if (test_return_val == 0) as i32 != 0 {
-        {
-            let __p = &mut tests_failed;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_failed += 1;
         unsafe {
             printf(
                 c"%c[%dmFailed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -744,12 +699,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
             )
         };
     } else {
-        {
-            let __p = &mut tests_run;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_run += 1;
         unsafe {
             printf(
                 c"%c[%dmPassed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -763,12 +713,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
     }
     test_return_val = test_cannot_get_outside_bounds();
     if (test_return_val == 0) as i32 != 0 {
-        {
-            let __p = &mut tests_failed;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_failed += 1;
         unsafe {
             printf(
                 c"%c[%dmFailed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -780,12 +725,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
             )
         };
     } else {
-        {
-            let __p = &mut tests_run;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_run += 1;
         unsafe {
             printf(
                 c"%c[%dmPassed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -799,12 +739,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
     }
     test_return_val = test_empty_array_does_not_blow_up();
     if (test_return_val == 0) as i32 != 0 {
-        {
-            let __p = &mut tests_failed;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_failed += 1;
         unsafe {
             printf(
                 c"%c[%dmFailed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -816,12 +751,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
             )
         };
     } else {
-        {
-            let __p = &mut tests_run;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_run += 1;
         unsafe {
             printf(
                 c"%c[%dmPassed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -835,12 +765,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
     }
     test_return_val = test_array_set();
     if (test_return_val == 0) as i32 != 0 {
-        {
-            let __p = &mut tests_failed;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_failed += 1;
         unsafe {
             printf(
                 c"%c[%dmFailed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -852,12 +777,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
             )
         };
     } else {
-        {
-            let __p = &mut tests_run;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_run += 1;
         unsafe {
             printf(
                 c"%c[%dmPassed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -871,12 +791,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
     }
     test_return_val = test_array_set_backwards();
     if (test_return_val == 0) as i32 != 0 {
-        {
-            let __p = &mut tests_failed;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_failed += 1;
         unsafe {
             printf(
                 c"%c[%dmFailed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -888,12 +803,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
             )
         };
     } else {
-        {
-            let __p = &mut tests_run;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_run += 1;
         unsafe {
             printf(
                 c"%c[%dmPassed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -907,12 +817,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
     }
     test_return_val = test_array_set_overwrites_old_values();
     if (test_return_val == 0) as i32 != 0 {
-        {
-            let __p = &mut tests_failed;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_failed += 1;
         unsafe {
             printf(
                 c"%c[%dmFailed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -924,12 +829,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
             )
         };
     } else {
-        {
-            let __p = &mut tests_run;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_run += 1;
         unsafe {
             printf(
                 c"%c[%dmPassed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -943,12 +843,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
     }
     test_return_val = test_array_set_high_num();
     if (test_return_val == 0) as i32 != 0 {
-        {
-            let __p = &mut tests_failed;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_failed += 1;
         unsafe {
             printf(
                 c"%c[%dmFailed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -960,12 +855,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
             )
         };
     } else {
-        {
-            let __p = &mut tests_run;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_run += 1;
         unsafe {
             printf(
                 c"%c[%dmPassed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -979,12 +869,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
     }
     test_return_val = test_array_get();
     if (test_return_val == 0) as i32 != 0 {
-        {
-            let __p = &mut tests_failed;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_failed += 1;
         unsafe {
             printf(
                 c"%c[%dmFailed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -996,12 +881,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
             )
         };
     } else {
-        {
-            let __p = &mut tests_run;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_run += 1;
         unsafe {
             printf(
                 c"%c[%dmPassed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -1015,12 +895,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
     }
     test_return_val = test_dict_set();
     if (test_return_val == 0) as i32 != 0 {
-        {
-            let __p = &mut tests_failed;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_failed += 1;
         unsafe {
             printf(
                 c"%c[%dmFailed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -1032,12 +907,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
             )
         };
     } else {
-        {
-            let __p = &mut tests_run;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_run += 1;
         unsafe {
             printf(
                 c"%c[%dmPassed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -1051,12 +921,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
     }
     test_return_val = test_dict_get();
     if (test_return_val == 0) as i32 != 0 {
-        {
-            let __p = &mut tests_failed;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_failed += 1;
         unsafe {
             printf(
                 c"%c[%dmFailed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -1068,12 +933,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
             )
         };
     } else {
-        {
-            let __p = &mut tests_run;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_run += 1;
         unsafe {
             printf(
                 c"%c[%dmPassed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -1087,12 +947,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
     }
     test_return_val = test_dict_lots_of_set();
     if (test_return_val == 0) as i32 != 0 {
-        {
-            let __p = &mut tests_failed;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_failed += 1;
         unsafe {
             printf(
                 c"%c[%dmFailed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,
@@ -1104,12 +959,7 @@ pub(crate) extern "C" fn __main_inner(argc: i32, argv: *const *mut i8) -> Result
             )
         };
     } else {
-        {
-            let __p = &mut tests_run;
-            let __t = *__p;
-            *__p += 1;
-            __t
-        };
+        tests_run += 1;
         unsafe {
             printf(
                 c"%c[%dmPassed%c[%dm: %s\n".as_ptr() as *mut i8 as *const i8,

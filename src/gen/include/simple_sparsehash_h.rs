@@ -1,7 +1,7 @@
 use super::*;
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Default)]
 pub(crate) struct SparseBucket {
     pub(crate) key: *mut i8,
     pub(crate) klen: u64,
@@ -11,7 +11,7 @@ pub(crate) struct SparseBucket {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Default)]
 pub(crate) struct SparseArrayGroup {
     pub(crate) count: u32,
     pub(crate) elem_size: u64,
@@ -20,14 +20,14 @@ pub(crate) struct SparseArrayGroup {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Default)]
 pub(crate) struct SparseArray {
     pub(crate) maximum: u64,
     pub(crate) groups: *mut SparseArrayGroup,
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Default)]
 pub(crate) struct SparseDict {
     pub(crate) bucket_max: u64,
     pub(crate) bucket_count: u64,
